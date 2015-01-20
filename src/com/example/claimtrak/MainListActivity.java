@@ -5,19 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Spinner;
-import android.widget.ArrayAdapter;
+//import android.widget.Spinner;
+//import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 public class MainListActivity extends ListActivity {
-	private String[] currencies = {"CAD", "EUR", "USD"};
+	//private String[] currencies = {"CAD", "EUR", "USD"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_list);
+		ClaimListManager.initManager(this.getApplicationContext());
 		
-		// Populate spinner
+		/* Populate spinner
 		Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencies);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -26,6 +27,7 @@ public class MainListActivity extends ListActivity {
 		//to get spinner value
 		//Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
 		//String text = mySpinner.getSelectedItem().toString();
+		*/
 	}
 
 	@Override

@@ -5,7 +5,7 @@
     tools:context="com.example.claimtrak.MainListActivity" >
 
     <ListView
-        android:id="@+id/claimListView"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"

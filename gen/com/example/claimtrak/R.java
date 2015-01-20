@@ -27,12 +27,12 @@ public final class R {
     public static final class id {
         public static final int action_settings=0x7f08000c;
         public static final int addClaimItem=0x7f08000d;
-        public static final int button1=0x7f080003;
+        public static final int button1=0x7f080002;
         public static final int claimCategoryEditText=0x7f080000;
-        public static final int claimListView=0x7f080004;
+        public static final int claimFromEditText=0x7f080001;
+        public static final int claimStatEditText=0x7f080004;
+        public static final int claimToEditText=0x7f080003;
         public static final int currencySpinner=0x7f080009;
-        public static final int editText1=0x7f080001;
-        public static final int editText2=0x7f080002;
         public static final int expenseAmountEditText=0x7f08000a;
         public static final int expenseCategoryEditText=0x7f080007;
         public static final int expenseDateEditText=0x7f080006;
