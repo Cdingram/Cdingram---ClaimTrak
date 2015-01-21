@@ -8,21 +8,26 @@ public class ClaimController {
 	
 	static public ClaimList getClaimList() {
 		if (claimList == null) {
-			//claimList = ClaimListManager.getManager().loadClaimList();
+			claimList = ClaimListManager.getManager().loadClaimList();
 			claimList.addListener(new Listener() {
 
 				@Override
 				public void update() {
-					// TODO Auto-generated method stub
-					//saveClaimList();
+					saveClaimList();
 				}
-				
+			
 			});
 		}
 		return claimList;
 	}
 	
 	static public void saveClaimList() {
+		try {
+			ClaimListManager.getManager().saveClaimList(getClaimList());
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Could not save student List");
+		}
 	}
 	
 	public void addClaim(Claim claim) {

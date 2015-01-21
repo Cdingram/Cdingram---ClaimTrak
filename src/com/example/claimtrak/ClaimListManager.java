@@ -1,20 +1,23 @@
 package com.example.claimtrak;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.util.Base64;
+
 
 public class ClaimListManager {
 
-	static final String prefFile = "ClaimList";
-	static final String slKey = "claimList";
+	private static final String FILENAME = "file.sav";
 	
 	Context context;
 	
@@ -41,39 +44,49 @@ public class ClaimListManager {
 	}
 	
 	
-	/*public ClaimList loadClaimList() throws ClassNotFoundException, IOException {
-		SharedPreferences settings = context.getSharedPreferences(prefFile, Context.MODE_PRIVATE);
-		String claimListData = settings.getString(slKey, "");
-		if (claimListData.equals("")) {
-			return new ClaimList();
-		} else {
-			return claimListFromString(claimListData);
-		}
-	}
-	
-	
-	private ClaimList claimListFromString(String claimListData) throws ClassNotFoundException, IOException {
-		ByteArrayInputStream bi = new ByteArrayInputStream(Base64.decode(claimListData, Base64.DEFAULT));
-		ObjectInputStream oi = new ObjectInputStream(bi);
-		return (ClaimList) oi.readObject();
-	}
-	
-	private String claimListToString(ClaimList cl) throws IOException{
-		ByteArrayOutputStream bo = new ByteArrayOutputStream();
-		ObjectOutputStream oo = new ObjectOutputStream(bo);
-		oo.writeObject(cl);
-		oo.close();
-		byte bytes[] = bo.toByteArray();
+	public ClaimList loadClaimList() {
+		Gson gson = new Gson();
+		ClaimList claimList = new ClaimList();
+		try {
+			FileInputStream fis;
+			InputStreamReader in = null;	
+			fis = context.openFileInput(FILENAME);
+			in = new InputStreamReader(fis);
+				
 		
-		return Base64.encodeToString(bytes, Base64.DEFAULT);
+			// Taken from http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/index.html
+			Type typeOfT = new TypeToken<ArrayList<Claim>>(){}.getType();
+			claimList = gson.fromJson(in, typeOfT);
+			fis.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return claimList;
 	}
 	
-	public void saveClaimList(ClaimList cl) throws IOException {
-		SharedPreferences settings = context.getSharedPreferences(prefFile, Context.MODE_PRIVATE);
-		Editor editor = settings.edit();
-		editor.putString(slKey, claimListToString(cl));
-		editor.commit();
+	public void saveClaimList(ClaimList cl) throws IOException{
+		Gson gson = new Gson();
+		
+		try {
+			FileOutputStream fos = null;
+		
+			fos = context.openFileOutput(FILENAME, 0);
+			OutputStreamWriter osw = new OutputStreamWriter(fos);
+			gson.toJson(cl, osw);
+			osw.flush();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
-	*/
+	
 	
 }
