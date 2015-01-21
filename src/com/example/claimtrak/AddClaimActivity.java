@@ -30,7 +30,7 @@ public class AddClaimActivity extends Activity {
 		listView.setAdapter(claimAdapter);
 		
 		// add change observer
-		
+		/*
 			ClaimController.getClaimList().addListener(new Listener() {
 				@Override
 				public void update() {
@@ -42,7 +42,7 @@ public class AddClaimActivity extends Activity {
 				}
 				
 			});
-		
+		*/
 		// set longclick
 		
 		

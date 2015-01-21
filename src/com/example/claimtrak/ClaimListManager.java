@@ -60,8 +60,10 @@ public class ClaimListManager {
 			fis.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Couldnt Load claimList");
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Couldnt Load claimList");
 		}
 		
 		return claimList;
