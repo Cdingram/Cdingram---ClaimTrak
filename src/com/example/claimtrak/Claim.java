@@ -1,15 +1,11 @@
 package com.example.claimtrak;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Claim implements Serializable{
+public class Claim {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1512757844717363369L;
 	protected ArrayList<Expense> expenses;
 	protected String category;
 	protected String toDate;
@@ -28,11 +24,4 @@ public class Claim implements Serializable{
 	public Collection<Expense> getExpenses() {		
 		return this.expenses;
 	}
-	
-	/*
-	public int hashCode() {
-		return ("Claim" + )
-	}
-	*/
-	
 }
