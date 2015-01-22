@@ -1,16 +1,11 @@
 package com.example.claimtrak;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 public class AddClaimActivity extends Activity {
@@ -22,32 +17,6 @@ public class AddClaimActivity extends Activity {
 		
 		ClaimListManager.initManager(this.getApplicationContext());
 		
-		// Display claim in ListView
-		ListView listView = (ListView) findViewById(R.id.expenseListView);
-		Collection<Claim> claims = ClaimController.getClaimList().getClaims();	
-		final ArrayList<Claim> list = new ArrayList<Claim>(claims);
-		final ArrayAdapter<Claim> claimAdapter = new ArrayAdapter<Claim>(this, android.R.layout.simple_expandable_list_item_1, list);
-		listView.setAdapter(claimAdapter);
-		
-		// add change observer
-		/*
-			ClaimController.getClaimList().addListener(new Listener() {
-				@Override
-				public void update() {
-					list.clear();
-					Collection<Claim> claims;	
-					claims = ClaimController.getClaimList().getClaims();
-					list.addAll(claims);
-					claimAdapter.notifyDataSetChanged();
-				}
-				
-			});
-		*/
-		// set longclick
-		
-		
-		
-		//
 	}
 
 	@Override

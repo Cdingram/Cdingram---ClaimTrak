@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -55,7 +53,7 @@ public class ClaimListManager {
 				
 		
 			// Taken from http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/index.html
-			Type typeOfT = new TypeToken<ArrayList<Claim>>(){}.getType();
+			Type typeOfT = new TypeToken<ClaimList>(){}.getType();
 			claimList = gson.fromJson(in, typeOfT);
 			fis.close();
 		} catch (FileNotFoundException e) {
@@ -75,7 +73,7 @@ public class ClaimListManager {
 		try {
 			FileOutputStream fos = null;
 		
-			fos = context.openFileOutput(FILENAME, 0);
+			fos = context.openFileOutput(FILENAME, 0);//MODE_PRIVATE
 			OutputStreamWriter osw = new OutputStreamWriter(fos);
 			gson.toJson(cl, osw);
 			osw.flush();

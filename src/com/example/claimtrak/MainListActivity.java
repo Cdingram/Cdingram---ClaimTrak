@@ -1,10 +1,15 @@
 package com.example.claimtrak;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 //import android.widget.Spinner;
 //import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -18,6 +23,29 @@ public class MainListActivity extends ListActivity {
 		setContentView(R.layout.activity_main_list);
 		ClaimListManager.initManager(this.getApplicationContext());
 		
+		// Display claim in ListView
+		ListView listView = (ListView) findViewById(R.id.expenseListView);
+		Collection<Claim> claims = ClaimController.getClaimList().getClaims();	
+		final ArrayList<Claim> list = new ArrayList<Claim>(claims);
+		final ArrayAdapter<Claim> claimAdapter = new ArrayAdapter<Claim>(this, android.R.layout.simple_expandable_list_item_1, list);
+		listView.setAdapter(claimAdapter);
+				
+		// add change observer
+		ClaimController.getClaimList().addListener(new Listener() {
+			@Override
+			public void update() {
+				list.clear();
+				Collection<Claim> claims;	
+				claims = ClaimController.getClaimList().getClaims();
+				list.addAll(claims);
+				claimAdapter.notifyDataSetChanged();
+			}
+						
+		});
+				
+		// set longclick
+				
+				
 		/* Populate spinner
 		Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencies);
