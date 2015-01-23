@@ -6,6 +6,7 @@ import java.util.Collection;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -25,7 +26,8 @@ public class MainListActivity extends ListActivity {
 		
 		// Display claim in ListView
 		ListView listView = getListView();
-		Collection<Claim> claims = ClaimController.getClaimList().getClaims();	
+		Collection<Claim> claims = ClaimController.getClaimList().getClaims();
+		Log.d("heya", "Claims" + claims);
 		final ArrayList<Claim> list = new ArrayList<Claim>(claims);
 		final ArrayAdapter<Claim> claimAdapter = new ArrayAdapter<Claim>(this, android.R.layout.simple_expandable_list_item_1, list);
 		listView.setAdapter(claimAdapter);
