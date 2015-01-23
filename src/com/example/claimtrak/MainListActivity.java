@@ -24,7 +24,7 @@ public class MainListActivity extends ListActivity {
 		ClaimListManager.initManager(this.getApplicationContext());
 		
 		// Display claim in ListView
-		ListView listView = (ListView) findViewById(R.id.expenseListView);
+		ListView listView = getListView();
 		Collection<Claim> claims = ClaimController.getClaimList().getClaims();	
 		final ArrayList<Claim> list = new ArrayList<Claim>(claims);
 		final ArrayAdapter<Claim> claimAdapter = new ArrayAdapter<Claim>(this, android.R.layout.simple_expandable_list_item_1, list);
