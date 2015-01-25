@@ -3,12 +3,16 @@ package com.example.claimtrak;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 //import android.widget.Spinner;
@@ -27,25 +31,63 @@ public class MainListActivity extends ListActivity {
 		// Display claim in ListView
 		ListView listView = getListView();
 		Collection<Claim> claims = ClaimController.getClaimList().getClaims();
-		Log.d("heya", "Claims" + claims);
-		final ArrayList<Claim> list = new ArrayList<Claim>(claims);
-		final ArrayAdapter<Claim> claimAdapter = new ArrayAdapter<Claim>(this, android.R.layout.simple_expandable_list_item_1, list);
+		final ArrayList<Claim> list1 = new ArrayList<Claim>(claims);
+		final ArrayList<String> list2 = new ArrayList<String>();
+		for(Claim item: list1) {
+			list2.add(item.getClaimName());
+		}
+		final ArrayAdapter<String> claimAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list2);
 		listView.setAdapter(claimAdapter);
 				
 		// add change observer
 		ClaimController.getClaimList().addListener(new Listener() {
 			@Override
 			public void update() {
-				list.clear();
+				list2.clear();
 				Collection<Claim> claims;	
 				claims = ClaimController.getClaimList().getClaims();
-				list.addAll(claims);
+				for(Claim item: claims) {
+					list2.add(item.getClaimName());
+				}
 				claimAdapter.notifyDataSetChanged();
 			}
 						
 		});
 				
-		// set longclick
+		// set longclick delete
+		listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				AlertDialog.Builder adb = new AlertDialog.Builder(MainListActivity.this);
+				adb.setMessage("Delete" + list2.get(position).toString() + "?");
+				adb.setCancelable(true);
+				final int finalPosition = position;
+				adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						Claim claimName = list1.get(finalPosition);
+						ClaimController.getClaimList().removeClaim(claimName);
+					}
+					
+				});
+				adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				adb.show();
+				return false;
+			}
+			
+		});
 				
 				
 		/* Populate spinner

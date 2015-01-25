@@ -21,6 +21,10 @@ public class Claim {
 		
 	}
 	
+	public String getClaimName() {
+		return this.category;
+	}
+	
 	public Collection<Expense> getExpenses() {		
 		return this.expenses;
 	}
