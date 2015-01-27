@@ -12,6 +12,10 @@ public class Claim {
 	protected String fromDate;
 	protected String status;
 	
+	public Claim() {
+		this.expenses = new ArrayList<Expense>();
+	}
+	
 	public Claim(String category, String toDate, String fromDate, String status){
 		this.expenses = new ArrayList<Expense>();
 		this.category = category;

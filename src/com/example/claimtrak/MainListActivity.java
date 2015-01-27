@@ -70,8 +70,16 @@ public class MainListActivity extends ListActivity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
-						Claim claimName = list1.get(finalPosition);
-						ClaimController.getClaimList().removeClaim(claimName);
+						String claimName = list2.get(finalPosition);
+						Claim deletedClaim = new Claim();
+						Collection<Claim> claims = ClaimController.getClaimList().getClaims();
+						final ArrayList<Claim> list3 = new ArrayList<Claim>(claims);
+						for (Claim item: list3) {
+							if (item.getClaimName().equals(claimName)) {
+								deletedClaim = item;
+							}
+						}
+						ClaimController.getClaimList().removeClaim(deletedClaim);
 					}
 					
 				});
