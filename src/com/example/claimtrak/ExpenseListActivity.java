@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class ExpenseListActivity extends Activity {
 
@@ -11,6 +12,10 @@ public class ExpenseListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.claim_summary);
+		
+		String name = GlobalClaim.claim.getClaimName();
+		Toast.makeText(this, ""+ name, Toast.LENGTH_SHORT).show();
+
 	}
 
 	@Override
