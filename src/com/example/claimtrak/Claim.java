@@ -32,4 +32,22 @@ public class Claim {
 	public Collection<Expense> getExpenses() {		
 		return this.expenses;
 	}
+	
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
+	}
+	
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+
 }

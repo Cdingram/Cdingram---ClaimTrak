@@ -46,7 +46,6 @@ public class AddClaimActivity extends Activity {
 		EditText claimStat = (EditText) findViewById(R.id.claimStatEditText);
 		ClaimController cc = new ClaimController();
 		// get all input
-		//st.addStudent(new Student(textView.getText().toString()));
 		String cat = claimCat.getText().toString();
 		String to = claimTo.getText().toString();
 		String from = claimFrom.getText().toString();
@@ -55,6 +54,7 @@ public class AddClaimActivity extends Activity {
 			Toast.makeText(this, "Ensure all fields are filled", Toast.LENGTH_SHORT).show();
 			return;
 		}
+		// needs fix
 		if (to.length() != 8 || from.length() != 8) {
 			Toast.makeText(this, "Invalid date. Endure date is in proper format DD/MM/YY", Toast.LENGTH_SHORT).show();
 			return;

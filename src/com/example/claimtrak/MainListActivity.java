@@ -8,7 +8,6 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,7 +61,7 @@ public class MainListActivity extends ListActivity {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				AlertDialog.Builder adb = new AlertDialog.Builder(MainListActivity.this);
-				adb.setMessage("Delete" + list2.get(position).toString() + "?");
+				adb.setMessage("Change" + list2.get(position).toString() + "?");
 				adb.setCancelable(true);
 				final int finalPosition = position;
 				adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
@@ -83,6 +82,28 @@ public class MainListActivity extends ListActivity {
 					}
 					
 				});
+				
+				adb.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						String claimName = list2.get(finalPosition);
+						Claim editClaim = new Claim();
+						Collection<Claim> claims = ClaimController.getClaimList().getClaims();
+						final ArrayList<Claim> list3 = new ArrayList<Claim>(claims);
+						for (Claim item: list3) {
+							if (item.getClaimName().equals(claimName)) {
+								editClaim = item;
+							}
+						}
+						
+						Intent intent = new Intent(MainListActivity.this, EditClaim.class);
+						GlobalClaim.claim = editClaim;
+				    	startActivity(intent);
+						
+					}
+				});
+				
 				adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 					
 					@Override
