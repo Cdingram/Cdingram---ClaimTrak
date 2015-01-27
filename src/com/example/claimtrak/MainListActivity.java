@@ -19,7 +19,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainListActivity extends ListActivity {
-	//private String[] currencies = {"CAD", "EUR", "USD"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +51,33 @@ public class MainListActivity extends ListActivity {
 			}
 						
 		});
+		
+		// set onclick for list items
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				final int finalPosition = position;
+				String claimName = list2.get(finalPosition);
+				Claim viewClaim = new Claim();
+				Collection<Claim> claims = ClaimController.getClaimList().getClaims();
+				final ArrayList<Claim> list3 = new ArrayList<Claim>(claims);
+				for (Claim item: list3) {
+					if (item.getClaimName().equals(claimName)) {
+						viewClaim = item;
+					}
+				}
 				
-		// set longclick delete
+				Intent intent = new Intent(MainListActivity.this, ExpenseListActivity.class);
+				GlobalClaim.claim = viewClaim;
+		    	startActivity(intent);
+			}
+			
+		});
+		
+		// set longclick delete/edit
 		listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
 			@Override
