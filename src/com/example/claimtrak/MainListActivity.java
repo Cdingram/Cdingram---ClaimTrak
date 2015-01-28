@@ -137,7 +137,7 @@ public class MainListActivity extends ListActivity {
 					}
 				});
 				adb.show();
-				return false;
+				return true;
 			}
 			
 		});
