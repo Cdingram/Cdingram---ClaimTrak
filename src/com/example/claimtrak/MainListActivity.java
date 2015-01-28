@@ -24,6 +24,30 @@ public class MainListActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_list);
+				
+		/* Populate spinner
+		Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencies);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		
+		//to get spinner value
+		//Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
+		//String text = mySpinner.getSelectedItem().toString();
+		*/
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main_list, menu);
+		return true;
+	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		
 		ClaimListManager.initManager(this.getApplicationContext());
 		
 		// Display claim in ListView
@@ -137,29 +161,11 @@ public class MainListActivity extends ListActivity {
 					}
 				});
 				adb.show();
-				return false;
+				return true;
 			}
 			
 		});
 				
-				
-		/* Populate spinner
-		Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencies);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
-		
-		//to get spinner value
-		//Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
-		//String text = mySpinner.getSelectedItem().toString();
-		*/
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main_list, menu);
-		return true;
 	}
 
 	@Override
