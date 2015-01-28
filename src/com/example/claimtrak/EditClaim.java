@@ -56,7 +56,7 @@ public class EditClaim extends Activity {
 		claim.setToDate(to);
 		claim.setFromDate(from);
 		claim.setStatus(stat);
-		
+		ClaimController.saveClaimList();
 		GlobalClaim.claim = null;
 	}
 }

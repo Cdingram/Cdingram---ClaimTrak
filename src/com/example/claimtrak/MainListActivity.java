@@ -24,7 +24,9 @@ public class MainListActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_list);
-				
+		
+		ClaimListManager.initManager(this.getApplicationContext());
+
 		/* Populate spinner
 		Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencies);
@@ -47,9 +49,7 @@ public class MainListActivity extends ListActivity {
 	@Override
 	public void onStart() {
 		super.onStart();
-		
-		ClaimListManager.initManager(this.getApplicationContext());
-		
+				
 		// Display claim in ListView
 		ListView listView = getListView();
 		Collection<Claim> claims = ClaimController.getClaimList().getClaims();
