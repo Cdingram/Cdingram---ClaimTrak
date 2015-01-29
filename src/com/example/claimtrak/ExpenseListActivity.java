@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,6 +48,54 @@ public class ExpenseListActivity extends Activity {
 		}
 		final ArrayAdapter<String> expenseAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list2);
 		listView.setAdapter(expenseAdapter);
+		
+		// do i need change observer?
+		
+		//set longclick for edit/delete
+		listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				AlertDialog.Builder adb = new AlertDialog.Builder(ExpenseListActivity.this);
+				adb.setMessage("Change " + list2.get(position).toString()+ "?");
+				adb.setCancelable(true);
+				final int finalPosition = position;
+				
+				adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						String expenseName = list2.get(finalPosition);
+						Expense deletedExpense = new Expense();
+						Collection<Expense> expenses = GlobalClaim.claim.getExpenses();
+						final ArrayList<Expense> list3 = new ArrayList<Expense>(expenses);
+						for(Expense item: list3) {
+							if (item.getCategory().equals(expenseName)){
+								deletedExpense = item;
+							}
+						}
+						GlobalClaim.claim.removeExpense(deletedExpense);
+						
+					}
+				});
+				
+				adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				adb.show();
+				return true;
+			}
+			
+		});
+		
 	}
 
 	@Override

@@ -16,6 +16,10 @@ public class Expense {
 		this.currency = currency;
 	}
 	
+	public Expense() {
+		
+	}
+	
 	public String getDate() {
 		return this.date;
 	}
