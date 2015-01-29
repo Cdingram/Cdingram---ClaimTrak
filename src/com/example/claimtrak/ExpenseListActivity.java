@@ -77,7 +77,20 @@ public class ExpenseListActivity extends Activity {
 								deletedExpense = item;
 							}
 						}
+						
 						GlobalClaim.claim.removeExpense(deletedExpense);
+						
+						// update listView. Bit of a hack but it works for now (adapter not in this scope for .notifyDataSetChanged()
+						ListView listView = (ListView) findViewById(R.id.expenseListView);
+						Collection<Expense> expenses1 = GlobalClaim.claim.getExpenses();
+						final ArrayList<Expense> list1 = new ArrayList<Expense>(expenses1);
+						final ArrayList<String> list2 = new ArrayList<String>();
+						for (Expense item: list1) {
+							list2.add(item.getCategory());
+						}
+						final ArrayAdapter<String> expenseAdapter = new ArrayAdapter<String>(ExpenseListActivity.this, android.R.layout.simple_expandable_list_item_1, list2);
+						listView.setAdapter(expenseAdapter);
+						
 						
 					}
 				});
