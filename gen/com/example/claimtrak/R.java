@@ -25,15 +25,15 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080011;
-        public static final int addClaimItem=0x7f080013;
+        public static final int action_settings=0x7f080012;
+        public static final int addClaimItem=0x7f080014;
         public static final int addCurrencySpinner=0x7f080008;
         public static final int addExpenseAmountEditText=0x7f080009;
         public static final int addExpenseButton=0x7f08000a;
         public static final int addExpenseCategoryEditText=0x7f080006;
         public static final int addExpenseDateEditText=0x7f080005;
         public static final int addExpenseDescriptionEditText=0x7f080007;
-        public static final int addExpenseItem=0x7f080012;
+        public static final int addExpenseItem=0x7f080013;
         public static final int button1=0x7f080002;
         public static final int claimCategoryEditText=0x7f080000;
         public static final int claimFromEditText=0x7f080001;
@@ -44,6 +44,7 @@ public final class R {
         public static final int editClaimStatEditText=0x7f08000f;
         public static final int editClaimToEditText=0x7f08000e;
         public static final int editUpdateButton=0x7f08000d;
+        public static final int empty1=0x7f080011;
         public static final int expenseListView=0x7f080010;
     }
     public static final class layout {

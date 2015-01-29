@@ -54,6 +54,7 @@ public class AddExpenseActivity extends Activity {
 		//add checks 
 		Expense expense = new Expense(date, cat, des, amount, "CAN");
 		GlobalClaim.claim.addExpense(expense);
+		ClaimController.saveClaimList();
 
 	}
 }

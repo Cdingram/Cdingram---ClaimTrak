@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ExpenseListActivity extends Activity {
@@ -30,6 +31,11 @@ public class ExpenseListActivity extends Activity {
 		
 		// Display expenses in listview
 		ListView listView = (ListView) findViewById(R.id.expenseListView);
+		// set empty view
+		TextView empty = (TextView)findViewById(R.id.empty1);
+		listView.setEmptyView(empty);
+		
+		//set array adapter to display expenses
 		Collection<Expense> expenses = GlobalClaim.claim.getExpenses();
 		final ArrayList<Expense> list1 = new ArrayList<Expense>(expenses);
 		final ArrayList<String> list2 = new ArrayList<String>();
