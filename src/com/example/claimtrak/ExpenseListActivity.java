@@ -1,9 +1,15 @@
 package com.example.claimtrak;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class ExpenseListActivity extends Activity {
@@ -16,6 +22,22 @@ public class ExpenseListActivity extends Activity {
 		String name = GlobalClaim.claim.getClaimName();
 		Toast.makeText(this, ""+ name, Toast.LENGTH_SHORT).show();
 
+	}
+	
+	@Override
+	public void onStart(){
+		super.onStart();
+		
+		// Display expenses in listview
+		ListView listView = (ListView) findViewById(R.id.expenseListView);
+		Collection<Expense> expenses = GlobalClaim.claim.getExpenses();
+		final ArrayList<Expense> list1 = new ArrayList<Expense>(expenses);
+		final ArrayList<String> list2 = new ArrayList<String>();
+		for (Expense item: list1) {
+			list2.add(item.getCategory());
+		}
+		final ArrayAdapter<String> expenseAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list2);
+		listView.setAdapter(expenseAdapter);
 	}
 
 	@Override
@@ -36,4 +58,10 @@ public class ExpenseListActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void addExpense(MenuItem menu) {
+    	Toast.makeText(this, "Add Expense", Toast.LENGTH_SHORT).show();
+    	Intent intent = new Intent(ExpenseListActivity.this, AddExpenseActivity.class);
+    	startActivity(intent);
+    }
 }

@@ -6,7 +6,7 @@ import java.util.Collection;
 
 public class Claim {
 	
-	protected ArrayList<Expense> expenses;
+	protected ArrayList<Expense> expenses = null;
 	protected String category;
 	protected String toDate;
 	protected String fromDate;
@@ -29,7 +29,18 @@ public class Claim {
 		return this.category;
 	}
 	
-	public Collection<Expense> getExpenses() {		
+	public void addExpense(Expense expense) {
+		expenses.add(expense);
+	}
+	
+	public void removeExpense(Expense expense) {
+		expenses.remove(expense);
+	}
+	
+	public Collection<Expense> getExpenses() {	
+		if (expenses == null) {
+			expenses = new ArrayList<Expense>();
+		}
 		return this.expenses;
 	}
 	
