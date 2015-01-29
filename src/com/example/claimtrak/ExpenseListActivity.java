@@ -90,6 +90,7 @@ public class ExpenseListActivity extends Activity {
 						}
 						final ArrayAdapter<String> expenseAdapter = new ArrayAdapter<String>(ExpenseListActivity.this, android.R.layout.simple_expandable_list_item_1, list2);
 						listView.setAdapter(expenseAdapter);
+						ClaimController.saveClaimList();
 						
 						
 					}
