@@ -9,6 +9,9 @@ public class ClaimController {
 	static public ClaimList getClaimList() {
 		if (claimList == null) {
 			claimList = ClaimListManager.getManager().loadClaimList();
+			if (claimList == null) {
+				claimList = new ClaimList();
+			}
 			claimList.addListener(new Listener() {
 
 				@Override

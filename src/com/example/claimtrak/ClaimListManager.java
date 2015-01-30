@@ -50,28 +50,26 @@ public class ClaimListManager {
 			InputStreamReader in = null;	
 			fis = context.openFileInput(FILENAME);
 			in = new InputStreamReader(fis);
-				
 		
 			// Taken from http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/index.html
 			Type typeOfT = new TypeToken<ClaimList>(){}.getType();
 			claimList = gson.fromJson(in, typeOfT);
 			fis.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			//throw new RuntimeException("Couldnt Load claimList");
+			
 			try {
 				FileOutputStream fos = context.openFileOutput(FILENAME, 0);
 				fos.close();
+				claimList = ClaimListManager.getManager().loadClaimList();
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-				throw new RuntimeException("Couldnt Load claimList");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-				throw new RuntimeException("Couldnt Load claimList");
 			}
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Couldnt Load claimList");

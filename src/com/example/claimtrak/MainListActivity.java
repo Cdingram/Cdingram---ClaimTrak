@@ -49,7 +49,7 @@ public class MainListActivity extends ListActivity {
 	@Override
 	public void onStart() {
 		super.onStart();
-				
+		ClaimListManager.initManager(this.getApplicationContext());
 		// Display claim in ListView
 		ListView listView = getListView();
 		Collection<Claim> claims = ClaimController.getClaimList().getClaims();
