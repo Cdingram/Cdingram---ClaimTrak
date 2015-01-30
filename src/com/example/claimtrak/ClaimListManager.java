@@ -58,7 +58,20 @@ public class ClaimListManager {
 			fis.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Couldnt Load claimList");
+			//throw new RuntimeException("Couldnt Load claimList");
+			try {
+				FileOutputStream fos = context.openFileOutput(FILENAME, 0);
+				fos.close();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				throw new RuntimeException("Couldnt Load claimList");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				throw new RuntimeException("Couldnt Load claimList");
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Couldnt Load claimList");
