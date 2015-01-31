@@ -59,5 +59,8 @@ public class EditExpenseActivity extends Activity {
 		expense.setDescription(des);
 		expense.setAmount(amount);
 		//currency
+		
+		ClaimController.saveClaimList();
+		GlobalClaim.expense = null;
 	}
 }
