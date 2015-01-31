@@ -20,6 +20,10 @@ public class Expense {
 		
 	}
 	
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	public String getDate() {
 		return this.date;
 	}
@@ -28,12 +32,24 @@ public class Expense {
 		return this.category;
 	}
 	
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 	public String getDescription() {
 		return this.description;
 	}
 	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	public String getAmount() {
 		return this.amount;
+	}
+	
+	public void setAmount(String amount) {
+		this.amount = amount;
 	}
 	
 	public String getCurrency() {

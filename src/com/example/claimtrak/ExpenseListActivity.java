@@ -96,6 +96,29 @@ public class ExpenseListActivity extends Activity {
 					}
 				});
 				
+				adb.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						String expenseName = list2.get(finalPosition);
+						Expense editExpense = new Expense();
+						Collection<Expense> expenses = GlobalClaim.claim.getExpenses();
+						final ArrayList<Expense> list3 = new ArrayList<Expense>(expenses);
+						for (Expense item:list3) {
+							if (item.getCategory().equals(expenseName)){
+								editExpense = item;
+							}
+						}
+						
+						Intent intent = new Intent(ExpenseListActivity.this, EditExpenseActivity.class);
+						GlobalClaim.expense = editExpense;
+						startActivity(intent);
+						
+						
+						
+					}
+				});
+				
 				adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 					
 					@Override

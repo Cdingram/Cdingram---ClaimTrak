@@ -38,6 +38,14 @@
             android:name=".AddExpenseActivity"
             android:label="@string/title_activity_add_expense" >
         </activity>
+        <activity
+            android:name=".EditExpenseActivity"
+            android:label="@string/title_activity_edit_expense" >
+        </activity>
+        <activity
+            android:name=".ExpenseSummaryActivity"
+            android:label="@string/title_activity_expense_summary" >
+        </activity>
     </application>
 
 </manifest>
