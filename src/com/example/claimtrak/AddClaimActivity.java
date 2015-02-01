@@ -1,5 +1,8 @@
 package com.example.claimtrak;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -38,6 +41,7 @@ public class AddClaimActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	@SuppressLint("SimpleDateFormat")
 	public void addClaimAction(View v) {	
 		Toast.makeText(this, "Adding A Claim", Toast.LENGTH_SHORT).show();
 		EditText claimCat = (EditText) findViewById(R.id.claimCategoryEditText);
@@ -55,12 +59,22 @@ public class AddClaimActivity extends Activity {
 			return;
 		}
 		// needs fix
-		if (to.length() != 8 || from.length() != 8) {
-			Toast.makeText(this, "Invalid date. Endure date is in proper format DD/MM/YY", Toast.LENGTH_SHORT).show();
+		String dateFormat = "DD/MM/yyyy";
+		SimpleDateFormat format = new SimpleDateFormat(dateFormat);
+		Date toD = null;
+		Date fromD = null;
+		try {
+			toD = format.parse(to);
+			fromD = format.parse(from);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Toast.makeText(this, "Ensure dates are in format dd/mm/yyyy", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		
-		cc.addClaim(new Claim(cat, to, from, stat));
+		cc.addClaim(new Claim(cat, toD, fromD, stat));
+		ClaimController.saveClaimList();
 		
 	}
 }

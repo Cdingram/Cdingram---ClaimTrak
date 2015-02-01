@@ -33,7 +33,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/claimCategoryEditText"
         android:ems="10"
-        android:hint="From Date DD/MM/YY"
+        android:hint="From Date DD/MM/YYYY"
         android:inputType="date" />
 
     <Button
@@ -57,7 +57,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/claimFromEditText"
         android:ems="10"
-        android:hint="To Date DD/MM/YY"
+        android:hint="To Date DD/MM/YYYY"
         android:inputType="date" />
 
     <EditText

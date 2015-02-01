@@ -3,26 +3,26 @@ package com.example.claimtrak;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 public class Claim {
 	
 	protected ArrayList<Expense> expenses = null;
 	protected String category;
-	protected String toDate;
-	protected String fromDate;
+	protected Date toDate;
+	protected Date fromDate;
 	protected String status;
 	
 	public Claim() {
 		this.expenses = new ArrayList<Expense>();
 	}
 	
-	public Claim(String category, String toDate, String fromDate, String status){
+	public Claim(String category, Date toDate, Date fromDate, String status){
 		this.expenses = new ArrayList<Expense>();
 		this.category = category;
 		this.toDate = toDate;
 		this.fromDate = fromDate;
 		this.status = status;
-		
 	}
 	
 	public String getClaimName() {
@@ -48,11 +48,11 @@ public class Claim {
 		this.category = category;
 	}
 	
-	public void setToDate(String toDate) {
+	public void setToDate(Date toDate) {
 		this.toDate = toDate;
 	}
 	
-	public void setFromDate(String fromDate) {
+	public void setFromDate(Date fromDate) {
 		this.fromDate = fromDate;
 	}
 	

@@ -1,14 +1,16 @@
 package com.example.claimtrak;
 
+import java.util.Date;
+
 public class Expense {
 	
-	protected String date;
+	protected Date date;
 	protected String category;
 	protected String description;
 	protected String amount;
 	protected String currency;
 	
-	public Expense(String date, String category, String description, String amount, String currency) {
+	public Expense(Date date, String category, String description, String amount, String currency) {
 		this.date = date;
 		this.category = category;
 		this.description = description;
@@ -20,11 +22,11 @@ public class Expense {
 		
 	}
 	
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	
-	public String getDate() {
+	public Date getDate() {
 		return this.date;
 	}
 	

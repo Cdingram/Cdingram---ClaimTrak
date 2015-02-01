@@ -1,5 +1,8 @@
 package com.example.claimtrak;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -36,6 +39,7 @@ public class EditExpenseActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	@SuppressLint("SimpleDateFormat")
 	public void editExpenseAction(View v) {
 		Toast.makeText(this, "Editing Expense", Toast.LENGTH_SHORT).show();
 		EditText expDate = (EditText) findViewById(R.id.editExpenseDateEditText);
@@ -51,13 +55,32 @@ public class EditExpenseActivity extends Activity {
 		// curr
 		
 		// add checking for proper things 
+		String dateFormat = "DD/MM/yyyy";
+		SimpleDateFormat format = new SimpleDateFormat(dateFormat);
+		Date dateD = null;
+		try {
+			dateD = format.parse(date);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Toast.makeText(this, "Ensure dates are in format dd/mm/yyyy", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		
 		Expense expense = GlobalClaim.expense;
 		
-		expense.setDate(date);
-		expense.setCategory(cat);
-		expense.setDescription(des);
-		expense.setAmount(amount);
+		if (date.length() != 0) {
+			expense.setDate(dateD);
+		}
+		if (cat.length() != 0 ) {
+			expense.setCategory(cat);
+		}
+		if (des.length() != 0) {
+			expense.setDescription(des);
+		}
+		if (amount.length() != 0) {
+			expense.setAmount(amount);
+		}
 		//currency
 		
 		ClaimController.saveClaimList();

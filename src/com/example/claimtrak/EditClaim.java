@@ -1,5 +1,8 @@
 package com.example.claimtrak;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -36,6 +39,7 @@ public class EditClaim extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	@SuppressLint("SimpleDateFormat")
 	public void editClaimAction(View v) {
 		Toast.makeText(this, "Editing Claim", Toast.LENGTH_SHORT).show();
 		EditText claimCat = (EditText) findViewById(R.id.editClaimCategoryEditText);
@@ -49,13 +53,35 @@ public class EditClaim extends Activity {
 		String stat = claimStat.getText().toString();
 		
 		//add checking for proper date/status/etc
+		String dateFormat = "DD/MM/yyyy";
+		SimpleDateFormat format = new SimpleDateFormat(dateFormat);
+		Date toD = null;
+		Date fromD = null;
+		try {
+			toD = format.parse(to);
+			fromD = format.parse(from);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Toast.makeText(this, "Ensure dates are in format dd/mm/yyyy", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		
 		Claim claim = GlobalClaim.claim;
 		
-		claim.setCategory(cat);
-		claim.setToDate(to);
-		claim.setFromDate(from);
-		claim.setStatus(stat);
+		if (cat.length() != 0 ) {
+			claim.setCategory(cat);
+		}
+		if (to.length() != 0 ) {
+			claim.setToDate(toD);
+		}
+		if (from.length() != 0 ) {
+			claim.setToDate(fromD);
+		}
+		if (stat.length() != 0 ) {
+			claim.setCategory(stat);
+		}
+		
 		ClaimController.saveClaimList();
 		GlobalClaim.claim = null;
 	}
