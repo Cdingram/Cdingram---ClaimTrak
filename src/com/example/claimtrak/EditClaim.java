@@ -53,20 +53,22 @@ public class EditClaim extends Activity {
 		String stat = claimStat.getText().toString();
 		
 		//add checking for proper date/status/etc
-		String dateFormat = "DD/MM/yyyy";
-		SimpleDateFormat format = new SimpleDateFormat(dateFormat);
 		Date toD = null;
 		Date fromD = null;
-		try {
-			toD = format.parse(to);
-			fromD = format.parse(from);
-		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			Toast.makeText(this, "Ensure dates are in format dd/mm/yyyy", Toast.LENGTH_SHORT).show();
-			return;
-		}
-		
+		if (to.length() != 0 || from.length() != 0) {
+			String dateFormat = "DD/MM/yyyy";
+			SimpleDateFormat format = new SimpleDateFormat(dateFormat);
+			
+			try {
+				toD = format.parse(to);
+				fromD = format.parse(from);
+			} catch (java.text.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Toast.makeText(this, "Ensure dates are in format dd/mm/yyyy", Toast.LENGTH_SHORT).show();
+				return;
+			}
+		}	
 		Claim claim = GlobalClaim.claim;
 		
 		if (cat.length() != 0 ) {

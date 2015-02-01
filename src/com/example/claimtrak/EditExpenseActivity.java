@@ -92,16 +92,19 @@ public class EditExpenseActivity extends Activity {
 		String currency = GlobalClaim.spinner;
 		
 		// add checking for proper things 
-		String dateFormat = "DD/MM/yyyy";
-		SimpleDateFormat format = new SimpleDateFormat(dateFormat);
 		Date dateD = null;
-		try {
-			dateD = format.parse(date);
-		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			Toast.makeText(this, "Ensure dates are in format dd/mm/yyyy", Toast.LENGTH_SHORT).show();
-			return;
+		if (date.length() != 0) {
+			String dateFormat = "DD/MM/yyyy";
+			SimpleDateFormat format = new SimpleDateFormat(dateFormat);
+			
+			try {
+				dateD = format.parse(date);
+			} catch (java.text.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Toast.makeText(this, "Ensure dates are in format dd/mm/yyyy", Toast.LENGTH_SHORT).show();
+				return;
+			}
 		}
 		
 		Expense expense = GlobalClaim.expense;
