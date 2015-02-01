@@ -10,6 +10,13 @@ public class Currency {
 		
 	}
 	
+	public void wipe() {
+		CAD = 0;
+		USD = 0;
+		EUR = 0;
+		GBP = 0;
+	}
+	
 	public String getCAD() {
 		return "" + this.CAD;
 	}

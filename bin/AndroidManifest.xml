@@ -46,6 +46,10 @@
             android:name=".ExpenseSummaryActivity"
             android:label="@string/title_activity_expense_summary" >
         </activity>
+        <activity
+            android:name=".EmailActivity"
+            android:label="@string/title_activity_email" >
+        </activity>
     </application>
 
 </manifest>

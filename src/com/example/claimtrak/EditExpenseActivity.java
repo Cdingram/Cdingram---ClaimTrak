@@ -119,6 +119,7 @@ public class EditExpenseActivity extends Activity {
 			expense.setDescription(des);
 		}
 		if (amount.length() != 0 && currency != null) {
+			expense.currency.wipe();
 			if(currency.equals("CAD")){
 				expense.currency.addCad(amount);
 			} else if (currency.equals("USD")) {

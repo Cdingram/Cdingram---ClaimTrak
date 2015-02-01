@@ -51,7 +51,7 @@ public class ExpenseListActivity extends Activity {
 		
 		// set text view for totals
 		TextView textView = (TextView) findViewById(R.id.expenseTextView);
-		String text = "Totals: " + GlobalClaim.claim.getTotalCAD() + "CAD" + GlobalClaim.claim.getTotalUSD() + "USD" + GlobalClaim.claim.getTotalEUR() + "EUR" + GlobalClaim.claim.getTotalGBP() + "GBP";
+		String text = "Totals" + "\n" + GlobalClaim.claim.getTotalCAD() + " CAD" +"\n" +  GlobalClaim.claim.getTotalUSD() + " USD" + "\n" + GlobalClaim.claim.getTotalEUR() + " EUR" + "\n" +  GlobalClaim.claim.getTotalGBP() + " GBP";
 		textView.setText(text);
 		
 		//set longclick for edit/delete
@@ -93,6 +93,12 @@ public class ExpenseListActivity extends Activity {
 						}
 						final ArrayAdapter<String> expenseAdapter = new ArrayAdapter<String>(ExpenseListActivity.this, android.R.layout.simple_expandable_list_item_1, list2);
 						listView.setAdapter(expenseAdapter);
+						
+						// update total currencies
+						TextView textView = (TextView) findViewById(R.id.expenseTextView);
+						String text = "Totals" + "\n" + GlobalClaim.claim.getTotalCAD() + " CAD" +"\n" +  GlobalClaim.claim.getTotalUSD() + " USD" + "\n" + GlobalClaim.claim.getTotalEUR() + " EUR" + "\n" +  GlobalClaim.claim.getTotalGBP() + " GBP";
+						textView.setText(text);
+						
 						ClaimController.saveClaimList();
 						
 						
@@ -162,4 +168,10 @@ public class ExpenseListActivity extends Activity {
     	Intent intent = new Intent(ExpenseListActivity.this, AddExpenseActivity.class);
     	startActivity(intent);
     }
+	
+	public void emailClaim(MenuItem menu) {
+		Toast.makeText(this, "Email Claim", Toast.LENGTH_SHORT).show();
+    	Intent intent = new Intent(ExpenseListActivity.this, EmailActivity.class);
+    	startActivity(intent);
+	}
 }
