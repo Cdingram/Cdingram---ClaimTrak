@@ -75,6 +75,7 @@ public class AddClaimActivity extends Activity {
 		
 		cc.addClaim(new Claim(cat, toD, fromD, stat));
 		ClaimController.saveClaimList();
+		GlobalClaim.claim = null;
 		
 	}
 }

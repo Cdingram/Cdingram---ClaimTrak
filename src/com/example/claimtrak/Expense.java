@@ -7,15 +7,12 @@ public class Expense {
 	protected Date date;
 	protected String category;
 	protected String description;
-	protected String amount;
-	protected String currency;
+	public Currency currency = new Currency();
 	
-	public Expense(Date date, String category, String description, String amount, String currency) {
+	public Expense(Date date, String category, String description) {
 		this.date = date;
 		this.category = category;
 		this.description = description;
-		this.amount = amount;
-		this.currency = currency;
 	}
 	
 	public Expense() {
@@ -46,19 +43,4 @@ public class Expense {
 		this.description = description;
 	}
 	
-	public String getAmount() {
-		return this.amount;
-	}
-	
-	public void setAmount(String amount) {
-		this.amount = amount;
-	}
-	
-	public String getCurrency() {
-		return this.currency;
-	}
-	
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
 }

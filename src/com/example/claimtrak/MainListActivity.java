@@ -26,17 +26,6 @@ public class MainListActivity extends ListActivity {
 		setContentView(R.layout.activity_main_list);
 		
 		ClaimListManager.initManager(this.getApplicationContext());
-
-		/* Populate spinner
-		Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencies);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
-		
-		//to get spinner value
-		//Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
-		//String text = mySpinner.getSelectedItem().toString();
-		*/
 	}
 
 	@Override

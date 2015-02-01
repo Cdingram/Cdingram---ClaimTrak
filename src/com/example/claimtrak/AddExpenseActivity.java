@@ -1,18 +1,24 @@
 package com.example.claimtrak;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AddExpenseActivity extends Activity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,6 +46,37 @@ public class AddExpenseActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	public void onStart() {
+		super.onStart();
+		ArrayList<String> currencies = new ArrayList<String>();
+		currencies.add("CAD");
+		currencies.add("USD");
+		currencies.add("EUR");
+		currencies.add("GBP");
+		// From developer.android.com/guide/topics/ui/controls/spinner.html
+		final Spinner spinner = (Spinner) findViewById(R.id.addCurrencySpinner);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencies);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				 GlobalClaim.spinner = (String) parent.getItemAtPosition(position);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+	}
+	
 	@SuppressLint("SimpleDateFormat")
 	public void addExpenseAction(View v) {
 		Toast.makeText(this, "Adding An Expense", Toast.LENGTH_SHORT).show();
@@ -54,10 +91,16 @@ public class AddExpenseActivity extends Activity {
 		String date = expenseDate.getText().toString();
 		String des = expenseDes.getText().toString();
 		String amount = expenseAmount.getText().toString();
+		String currency = GlobalClaim.spinner;
 		
 		//add checks 
 		if (cat.length() == 0 || date.length() == 0 || des.length() == 0 || amount.length() == 0) {
 			Toast.makeText(this, "Ensure all fields are filled", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
+		if (currency == null) {
+			Toast.makeText(this, "Ensure currency is selected", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		//date check
@@ -73,9 +116,21 @@ public class AddExpenseActivity extends Activity {
 			return;
 		}
 		
-		Expense expense = new Expense(dateD, cat, des, amount, "CAN");
+		
+		Expense expense = new Expense(dateD, cat, des);
+		if(currency.equals("CAD")){
+			expense.currency.addCad(amount);
+		} else if (currency.equals("USD")) {
+			expense.currency.addUSD(amount);
+		} else if (currency.equals("EUR")) {
+			expense.currency.addEUR(amount);
+		} else if (currency.equals("GBP")) {
+			expense.currency.addGBP(amount);
+		}
+		
 		GlobalClaim.claim.addExpense(expense);
 		ClaimController.saveClaimList();
-
+		GlobalClaim.spinner = null;
+		GlobalClaim.expense = null;
 	}
 }

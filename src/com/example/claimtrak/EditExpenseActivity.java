@@ -1,15 +1,21 @@
 package com.example.claimtrak;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class EditExpenseActivity extends Activity {
 
@@ -39,6 +45,37 @@ public class EditExpenseActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	public void onStart() {
+		super.onStart();
+		ArrayList<String> currencies = new ArrayList<String>();
+		currencies.add("CAD");
+		currencies.add("USD");
+		currencies.add("EUR");
+		currencies.add("GBP");
+		// From developer.android.com/guide/topics/ui/controls/spinner.html
+		final Spinner spinner = (Spinner) findViewById(R.id.editCurrencySpinner);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencies);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				 GlobalClaim.spinner = (String) parent.getItemAtPosition(position);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+	}
+	
 	@SuppressLint("SimpleDateFormat")
 	public void editExpenseAction(View v) {
 		Toast.makeText(this, "Editing Expense", Toast.LENGTH_SHORT).show();
@@ -52,7 +89,7 @@ public class EditExpenseActivity extends Activity {
 		String cat = expCat.getText().toString();
 		String des = expDes.getText().toString();
 		String amount = expAmount.getText().toString();
-		// curr
+		String currency = GlobalClaim.spinner;
 		
 		// add checking for proper things 
 		String dateFormat = "DD/MM/yyyy";
@@ -78,12 +115,20 @@ public class EditExpenseActivity extends Activity {
 		if (des.length() != 0) {
 			expense.setDescription(des);
 		}
-		if (amount.length() != 0) {
-			expense.setAmount(amount);
+		if (amount.length() != 0 && currency != null) {
+			if(currency.equals("CAD")){
+				expense.currency.addCad(amount);
+			} else if (currency.equals("USD")) {
+				expense.currency.addUSD(amount);
+			} else if (currency.equals("EUR")) {
+				expense.currency.addEUR(amount);
+			} else if (currency.equals("GBP")) {
+				expense.currency.addGBP(amount);
+			}
 		}
-		//currency
 		
 		ClaimController.saveClaimList();
+		GlobalClaim.spinner = null;
 		GlobalClaim.expense = null;
 	}
 }
