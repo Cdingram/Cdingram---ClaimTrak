@@ -25,6 +25,42 @@ public class Claim {
 		this.status = status;
 	}
 	
+	public String getTotalCAD() {
+		float total = 0;
+		for (Expense item: expenses) {
+			total += Float.valueOf(item.currency.getCAD());
+		}
+		return ""+total;
+		
+	}
+	
+	public String getTotalUSD() {
+		float total = 0;
+		for (Expense item: expenses) {
+			total += Float.valueOf(item.currency.getUSD());
+		}
+		return ""+total;
+		
+	}
+	
+	public String getTotalEUR() {
+		float total = 0;
+		for (Expense item: expenses) {
+			total += Float.valueOf(item.currency.getEUR());
+		}
+		return ""+total;
+		
+	}
+	
+	public String getTotalGBP() {
+		float total = 0;
+		for (Expense item: expenses) {
+			total += Float.valueOf(item.currency.getGBP());
+		}
+		return ""+total;
+		
+	}
+	
 	public String getClaimName() {
 		return this.category;
 	}

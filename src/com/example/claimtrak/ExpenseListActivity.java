@@ -49,7 +49,10 @@ public class ExpenseListActivity extends Activity {
 		final ArrayAdapter<String> expenseAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list2);
 		listView.setAdapter(expenseAdapter);
 		
-		// do i need change observer?
+		// set text view for totals
+		TextView textView = (TextView) findViewById(R.id.expenseTextView);
+		String text = "Totals: " + GlobalClaim.claim.getTotalCAD() + "CAD" + GlobalClaim.claim.getTotalUSD() + "USD" + GlobalClaim.claim.getTotalEUR() + "EUR" + GlobalClaim.claim.getTotalGBP() + "GBP";
+		textView.setText(text);
 		
 		//set longclick for edit/delete
 		listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

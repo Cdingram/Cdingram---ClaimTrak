@@ -9,7 +9,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/expenseTextView">
     </ListView>
 
     <TextView android:id="@+id/empty1"
@@ -19,6 +20,18 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text="No Expenses to Display!" />
+    
+    <TextView
+        android:id="@+id/expenseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="#0FF"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFF" />
     
 
 </RelativeLayout>
