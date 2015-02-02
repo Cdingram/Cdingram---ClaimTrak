@@ -82,7 +82,7 @@ public class EditClaim extends Activity {
 		}
 		if (stat.length() != 0 ) {
 			if (stat.equals("Submitted") || stat.equals("Returned") || stat.equals("Approved")){
-				claim.setCategory(stat);
+				claim.setStatus(stat);
 			} else {
 				Toast.makeText(this, "Ensure status is Submitted or Returned or Approved", Toast.LENGTH_SHORT).show();
 			}

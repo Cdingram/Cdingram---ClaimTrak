@@ -116,6 +116,7 @@ public class MainListActivity extends ListActivity {
 							}
 						}
 						ClaimController.getClaimList().removeClaim(deletedClaim);
+						ClaimController.saveClaimList();
 					}
 					
 				});
