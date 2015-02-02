@@ -20,6 +20,7 @@
 package com.example.claimtrak;
 
 public class Currency {
+	// currency totals
 	private float CAD = 0;
 	private float USD = 0;
 	private float EUR = 0;
@@ -28,14 +29,14 @@ public class Currency {
 	Currency() {
 		
 	}
-	
+	// wipe for updates
 	public void wipe() {
 		CAD = 0;
 		USD = 0;
 		EUR = 0;
 		GBP = 0;
 	}
-	
+	// getters and set/adders
 	public String getCAD() {
 		return "" + this.CAD;
 	}

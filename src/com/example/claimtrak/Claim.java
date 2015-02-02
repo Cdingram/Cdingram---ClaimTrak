@@ -25,13 +25,13 @@ import java.util.Collection;
 import java.util.Date;
 
 public class Claim {
-	
+	// attributes
 	protected ArrayList<Expense> expenses = null;
 	protected String category;
 	protected Date toDate;
 	protected Date fromDate;
 	protected String status;
-	
+	//constructors
 	public Claim() {
 		this.expenses = new ArrayList<Expense>();
 	}
@@ -43,7 +43,7 @@ public class Claim {
 		this.fromDate = fromDate;
 		this.status = status;
 	}
-	
+	// get total currency amounts from expenses within a claim
 	public String getTotalCAD() {
 		float total = 0;
 		for (Expense item: expenses) {
@@ -79,7 +79,7 @@ public class Claim {
 		return ""+total;
 		
 	}
-	
+	// getters/setters/adders
 	public String getClaimName() {
 		return this.category;
 	}

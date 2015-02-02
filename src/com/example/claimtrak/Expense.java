@@ -22,12 +22,12 @@ package com.example.claimtrak;
 import java.util.Date;
 
 public class Expense {
-	
+	// expense attributes 
 	protected Date date;
 	protected String category;
 	protected String description;
 	public Currency currency = new Currency();
-	
+	// constructors
 	public Expense(Date date, String category, String description) {
 		this.date = date;
 		this.category = category;
@@ -37,7 +37,7 @@ public class Expense {
 	public Expense() {
 		
 	}
-	
+	// setters and getters
 	public void setDate(Date date) {
 		this.date = date;
 	}

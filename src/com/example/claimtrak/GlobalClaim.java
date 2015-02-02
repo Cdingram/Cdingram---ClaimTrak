@@ -19,6 +19,9 @@
 */
 package com.example.claimtrak;
 
+// global items for sending information between activities
+// I realize this is a bad programming practice, especially because it defies encapsulation and is potentially dangerous.
+// Due to time constraints, I decided this method was justified because of the small amount of information being passed
 public class GlobalClaim {
 	public static Claim claim = new Claim();
 	public static Expense expense = new Expense();

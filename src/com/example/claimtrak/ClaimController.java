@@ -17,6 +17,9 @@
  * 
  * github.com/Cdingram/Cdingram-ClaimTrak
 */
+
+// controller heavily inspired by Abram Hindle's student picker tutorials
+
 package com.example.claimtrak;
 
 import java.io.IOException;
@@ -24,7 +27,7 @@ import java.io.IOException;
 public class ClaimController {
 	
 	private static ClaimList claimList = null;
-	
+	// get claimList
 	static public ClaimList getClaimList() {
 		if (claimList == null) {
 			claimList = ClaimListManager.getManager().loadClaimList();
@@ -42,7 +45,7 @@ public class ClaimController {
 		}
 		return claimList;
 	}
-	
+	// save list 
 	static public void saveClaimList() {
 		try {
 			ClaimListManager.getManager().saveClaimList(getClaimList());
@@ -51,7 +54,7 @@ public class ClaimController {
 			throw new RuntimeException("Could not save student List");
 		}
 	}
-	
+	// add claim
 	public void addClaim(Claim claim) {
 		getClaimList().addClaim(claim);
 	}

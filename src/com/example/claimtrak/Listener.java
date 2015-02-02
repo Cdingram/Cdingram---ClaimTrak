@@ -18,7 +18,7 @@
  * github.com/Cdingram/Cdingram-ClaimTrak
 */
 package com.example.claimtrak;
-
+// set interface for listeners,  from github.com/abramhindle/student-picker
 public interface Listener {
 	public void update();
 }

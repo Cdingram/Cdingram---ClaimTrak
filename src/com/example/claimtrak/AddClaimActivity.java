@@ -63,6 +63,7 @@ public class AddClaimActivity extends Activity {
 	@SuppressLint("SimpleDateFormat")
 	public void addClaimAction(View v) {	
 		Toast.makeText(this, "Adding A Claim", Toast.LENGTH_SHORT).show();
+		// get text fields
 		EditText claimCat = (EditText) findViewById(R.id.claimCategoryEditText);
 		EditText claimTo = (EditText) findViewById(R.id.claimToEditText);
 		EditText claimFrom = (EditText) findViewById(R.id.claimFromEditText);
@@ -75,7 +76,7 @@ public class AddClaimActivity extends Activity {
 			Toast.makeText(this, "Ensure all fields are filled", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		// needs fix
+		// checks
 		String dateFormat = "DD/MM/yyyy";
 		SimpleDateFormat format = new SimpleDateFormat(dateFormat);
 		Date toD = null;
@@ -89,7 +90,7 @@ public class AddClaimActivity extends Activity {
 			Toast.makeText(this, "Ensure dates are in format dd/mm/yyyy", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		
+		// add/save/clean
 		cc.addClaim(new Claim(cat, toD, fromD, "In Progress"));
 		ClaimController.saveClaimList();
 		GlobalClaim.claim = null;

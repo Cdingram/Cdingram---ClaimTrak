@@ -55,13 +55,14 @@ public class ExpenseSummaryActivity extends Activity {
 	@Override
 	public void onStart() {
 		super.onStart();
+		// get expense
 		Expense expense = GlobalClaim.expense;
-		
+		//get textViews
 		TextView catText = (TextView) findViewById(R.id.categorySummaryTextView);
 		TextView dateText = (TextView) findViewById(R.id.dateSummaryTextView);
 		TextView desText = (TextView) findViewById(R.id.desSummaryTextView);
 		TextView amountText = (TextView) findViewById(R.id.amountSummaryTextView);
-		
+		// set text for textviews to display expense info
 		catText.setText(expense.getCategory());
 		dateText.setText(expense.getDate().toString());
 		desText.setText(expense.getDescription());

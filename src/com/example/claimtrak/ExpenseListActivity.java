@@ -79,7 +79,7 @@ public class ExpenseListActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
+				// send to summary activity for expense that was clicked
 				final int finalPosition = position;
 				String expenseName = list2.get(finalPosition);
 				Expense viewExpense = new Expense();
@@ -104,17 +104,17 @@ public class ExpenseListActivity extends Activity {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
+				// create dialog
 				AlertDialog.Builder adb = new AlertDialog.Builder(ExpenseListActivity.this);
 				adb.setMessage("Change " + list2.get(position).toString()+ "?");
 				adb.setCancelable(true);
 				final int finalPosition = position;
-				
+				// delete button
 				adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
+						// delete selected expense
 						String expenseName = list2.get(finalPosition);
 						Expense deletedExpense = new Expense();
 						Collection<Expense> expenses = GlobalClaim.claim.getExpenses();
@@ -128,6 +128,7 @@ public class ExpenseListActivity extends Activity {
 						GlobalClaim.claim.removeExpense(deletedExpense);
 						
 						// update listView. Bit of a hack but it works for now (adapter not in this scope for .notifyDataSetChanged()
+						// realized this was unnecessary to late to change :( 
 						ListView listView = (ListView) findViewById(R.id.expenseListView);
 						Collection<Expense> expenses1 = GlobalClaim.claim.getExpenses();
 						final ArrayList<Expense> list1 = new ArrayList<Expense>(expenses1);
@@ -138,7 +139,7 @@ public class ExpenseListActivity extends Activity {
 						final ArrayAdapter<String> expenseAdapter = new ArrayAdapter<String>(ExpenseListActivity.this, android.R.layout.simple_expandable_list_item_1, list2);
 						listView.setAdapter(expenseAdapter);
 						
-						// update total currencies
+						// update total currencies text view. Same story as above
 						TextView textView = (TextView) findViewById(R.id.expenseTextView);
 						String text = "Totals" + "\n" + GlobalClaim.claim.getTotalCAD() + " CAD" +"\n" +  GlobalClaim.claim.getTotalUSD() + " USD" + "\n" + GlobalClaim.claim.getTotalEUR() + " EUR" + "\n" +  GlobalClaim.claim.getTotalGBP() + " GBP";
 						textView.setText(text);
@@ -148,7 +149,7 @@ public class ExpenseListActivity extends Activity {
 						
 					}
 				});
-				
+				// edit button
 				adb.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
 					
 					@Override
@@ -162,7 +163,7 @@ public class ExpenseListActivity extends Activity {
 								editExpense = item;
 							}
 						}
-						
+						// send to edit expense activity
 						Intent intent = new Intent(ExpenseListActivity.this, EditExpenseActivity.class);
 						GlobalClaim.expense = editExpense;
 						startActivity(intent);
@@ -206,13 +207,13 @@ public class ExpenseListActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+	// method to send to add expense activity on button push
 	public void addExpense(MenuItem menu) {
     	Toast.makeText(this, "Add Expense", Toast.LENGTH_SHORT).show();
     	Intent intent = new Intent(ExpenseListActivity.this, AddExpenseActivity.class);
     	startActivity(intent);
     }
-	
+	// method to send to send email activity on button push
 	public void emailClaim(MenuItem menu) {
 		Toast.makeText(this, "Email Claim", Toast.LENGTH_SHORT).show();
     	Intent intent = new Intent(ExpenseListActivity.this, EmailActivity.class);

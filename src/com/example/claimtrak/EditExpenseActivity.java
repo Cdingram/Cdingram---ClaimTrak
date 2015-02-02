@@ -66,6 +66,7 @@ public class EditExpenseActivity extends Activity {
 	
 	public void onStart() {
 		super.onStart();
+		// init currency array
 		ArrayList<String> currencies = new ArrayList<String>();
 		currencies.add("CAD");
 		currencies.add("USD");
@@ -81,7 +82,7 @@ public class EditExpenseActivity extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
+				// send selection to globals (bad i know!)
 				 GlobalClaim.spinner = (String) parent.getItemAtPosition(position);
 			}
 
@@ -98,19 +99,19 @@ public class EditExpenseActivity extends Activity {
 	@SuppressLint("SimpleDateFormat")
 	public void editExpenseAction(View v) {
 		Toast.makeText(this, "Editing Expense", Toast.LENGTH_SHORT).show();
+		// get edit text fields
 		EditText expDate = (EditText) findViewById(R.id.editExpenseDateEditText);
 		EditText expCat = (EditText) findViewById(R.id.editExpenseCategoryEditText);
 		EditText expDes = (EditText) findViewById(R.id.editExpenseDescriptionEditText);
 		EditText expAmount = (EditText) findViewById(R.id.editExpenseAmountEditText);
-		//EditText expCurr = (EditText) findViewById(R.id.editExpense);
-		
+		// get user input
 		String date = expDate.getText().toString();
 		String cat = expCat.getText().toString();
 		String des = expDes.getText().toString();
 		String amount = expAmount.getText().toString();
 		String currency = GlobalClaim.spinner;
 		
-		// add checking for proper things 
+		// checking for proper dates 
 		Date dateD = null;
 		if (date.length() != 0) {
 			String dateFormat = "DD/MM/yyyy";
@@ -127,7 +128,7 @@ public class EditExpenseActivity extends Activity {
 		}
 		
 		Expense expense = GlobalClaim.expense;
-		
+		// if user input, then update expense
 		if (date.length() != 0) {
 			expense.setDate(dateD);
 		}
@@ -137,6 +138,7 @@ public class EditExpenseActivity extends Activity {
 		if (des.length() != 0) {
 			expense.setDescription(des);
 		}
+		// updates of currency
 		if (amount.length() != 0 && currency != null) {
 			expense.currency.wipe();
 			if(currency.equals("CAD")){
@@ -149,7 +151,7 @@ public class EditExpenseActivity extends Activity {
 				expense.currency.addGBP(amount);
 			}
 		}
-		
+		// save and clean
 		ClaimController.saveClaimList();
 		GlobalClaim.spinner = null;
 		GlobalClaim.expense = null;

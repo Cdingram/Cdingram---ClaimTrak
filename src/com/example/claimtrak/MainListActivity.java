@@ -43,7 +43,7 @@ public class MainListActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_list);
-		
+		// init manager
 		ClaimListManager.initManager(this.getApplicationContext());
 	}
 
@@ -90,7 +90,7 @@ public class MainListActivity extends ListActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
+				// get item at click position
 				final int finalPosition = position;
 				String claimName = list2.get(finalPosition);
 				Claim viewClaim = new Claim();
@@ -101,7 +101,7 @@ public class MainListActivity extends ListActivity {
 						viewClaim = item;
 					}
 				}
-				
+				// start expense list activity
 				Intent intent = new Intent(MainListActivity.this, ExpenseListActivity.class);
 				GlobalClaim.claim = viewClaim;
 		    	startActivity(intent);
@@ -115,16 +115,17 @@ public class MainListActivity extends ListActivity {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
+				// build dialog pop-up
 				AlertDialog.Builder adb = new AlertDialog.Builder(MainListActivity.this);
 				adb.setMessage("Change" + list2.get(position).toString() + "?");
 				adb.setCancelable(true);
 				final int finalPosition = position;
+				// delete button
 				adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
+						// delete item at click location
 						String claimName = list2.get(finalPosition);
 						Claim deletedClaim = new Claim();
 						Collection<Claim> claims = ClaimController.getClaimList().getClaims();
@@ -140,6 +141,7 @@ public class MainListActivity extends ListActivity {
 					
 				});
 				
+				// set edit button
 				adb.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
 					
 					@Override
@@ -153,7 +155,7 @@ public class MainListActivity extends ListActivity {
 								editClaim = item;
 							}
 						}
-						
+						//send item clicked to edit activity
 						if (editClaim.getStatus().equals("Submitted") || editClaim.getStatus().equals("Approved")) {
 							
 						} else {
@@ -192,7 +194,7 @@ public class MainListActivity extends ListActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+	// method for adding a new claim to the claimList
 	public void addClaim(MenuItem menu) {
     	Toast.makeText(this, "Add Claim", Toast.LENGTH_SHORT).show();
     	Intent intent = new Intent(MainListActivity.this, AddClaimActivity.class);

@@ -54,7 +54,7 @@ public class EmailActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+	// send email
 	public void send(View v) {
 		// from stackoverflow.com/questions/8284706/send-email-via-gmail
 		EditText email = (EditText) findViewById(R.id.editText1);

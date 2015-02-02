@@ -17,6 +17,11 @@
  * 
  * github.com/Cdingram/Cdingram-ClaimTrak
 */
+
+// this file is heavily inspired from both Abram and Joshua's respective works
+// In particular, the load/save gson methods from lonely twitter labs (Joshua)
+// and manager stucture/implementation from Abram's student picker
+
 package com.example.claimtrak;
 
 import java.io.FileInputStream;
@@ -31,15 +36,16 @@ import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
 
+// manager heavily inspired by Abram Hindles student-picker tutorials
 
 public class ClaimListManager {
-
+	// save filename
 	private static final String FILENAME = "file.sav";
 	
 	Context context;
 	
 	private static ClaimListManager claimListManager = null;
-
+	// initialize manager if null
 	public static void initManager(Context context) {
 		if(claimListManager == null) {
 			if(context == null) {
@@ -48,19 +54,19 @@ public class ClaimListManager {
 			claimListManager = new ClaimListManager(context);
 		}
 	}
-	
+	// return the manager, throw error if not initialized
 	public static ClaimListManager getManager() {
 		if(claimListManager == null) {
 			throw new RuntimeException("Did not initialize manager");
 		}
 		return claimListManager;
 	}
-	
+	// constructor
 	public ClaimListManager(Context context) {
 		this.context = context;
 	}
 	
-	
+	// load file from file.sav
 	public ClaimList loadClaimList() {
 		Gson gson = new Gson();
 		ClaimList claimList = new ClaimList();
@@ -75,9 +81,7 @@ public class ClaimListManager {
 			claimList = gson.fromJson(in, typeOfT);
 			fis.close();
 		} catch (FileNotFoundException e) {
-			//e.printStackTrace();
-			//throw new RuntimeException("Couldnt Load claimList");
-			
+			// if file not initialized, init file.sav and then call function again
 			try {
 				FileOutputStream fos = context.openFileOutput(FILENAME, 0);
 				fos.close();
@@ -96,7 +100,7 @@ public class ClaimListManager {
 		
 		return claimList;
 	}
-	
+	// save the claimList to file
 	public void saveClaimList(ClaimList cl) throws IOException{
 		Gson gson = new Gson();
 		

@@ -67,6 +67,7 @@ public class AddExpenseActivity extends Activity {
 	
 	public void onStart() {
 		super.onStart();
+		//init currency array
 		ArrayList<String> currencies = new ArrayList<String>();
 		currencies.add("CAD");
 		currencies.add("USD");
@@ -99,7 +100,7 @@ public class AddExpenseActivity extends Activity {
 	@SuppressLint("SimpleDateFormat")
 	public void addExpenseAction(View v) {
 		Toast.makeText(this, "Adding An Expense", Toast.LENGTH_SHORT).show();
-		
+		// get text fields
 		EditText expenseCat = (EditText) findViewById(R.id.addExpenseCategoryEditText);
 		EditText expenseDate = (EditText) findViewById(R.id.addExpenseDateEditText);
 		EditText expenseDes = (EditText) findViewById(R.id.addExpenseDescriptionEditText);
@@ -112,7 +113,7 @@ public class AddExpenseActivity extends Activity {
 		String amount = expenseAmount.getText().toString();
 		String currency = GlobalClaim.spinner;
 		
-		//add checks 
+		//checks 
 		if (cat.length() == 0 || date.length() == 0 || des.length() == 0 || amount.length() == 0) {
 			Toast.makeText(this, "Ensure all fields are filled", Toast.LENGTH_SHORT).show();
 			return;
@@ -129,13 +130,13 @@ public class AddExpenseActivity extends Activity {
 		try {
 			dateD = format.parse(date);
 		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
+			// not valid date format error
 			e.printStackTrace();
 			Toast.makeText(this, "Ensure dates are in format dd/mm/yyyy", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		
-		
+		// deal with expenses
 		Expense expense = new Expense(dateD, cat, des);
 		if(currency.equals("CAD")){
 			expense.currency.addCad(amount);
@@ -146,7 +147,7 @@ public class AddExpenseActivity extends Activity {
 		} else if (currency.equals("GBP")) {
 			expense.currency.addGBP(amount);
 		}
-		
+		// add/save/clean
 		GlobalClaim.claim.addExpense(expense);
 		ClaimController.saveClaimList();
 		GlobalClaim.spinner = null;

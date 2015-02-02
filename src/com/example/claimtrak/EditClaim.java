@@ -61,17 +61,18 @@ public class EditClaim extends Activity {
 	@SuppressLint("SimpleDateFormat")
 	public void editClaimAction(View v) {
 		Toast.makeText(this, "Editing Claim", Toast.LENGTH_SHORT).show();
+		// get edit text fields
 		EditText claimCat = (EditText) findViewById(R.id.editClaimCategoryEditText);
 		EditText claimTo = (EditText) findViewById(R.id.editClaimToEditText);
 		EditText claimFrom = (EditText) findViewById(R.id.editClaimFromEditText);
 		EditText claimStat = (EditText) findViewById(R.id.editClaimStatEditText);
-		
+		// get user inputs
 		String cat = claimCat.getText().toString();
 		String to = claimTo.getText().toString();
 		String from = claimFrom.getText().toString();
 		String stat = claimStat.getText().toString();
 		
-		//add checking for proper date/status/etc
+		//checking for proper date/status/etc
 		Date toD = null;
 		Date fromD = null;
 		if (to.length() != 0 || from.length() != 0) {
@@ -106,7 +107,7 @@ public class EditClaim extends Activity {
 				Toast.makeText(this, "Ensure status is Submitted or Returned or Approved", Toast.LENGTH_SHORT).show();
 			}
 		}
-		
+		// save and clean
 		ClaimController.saveClaimList();
 		GlobalClaim.claim = null;
 	}

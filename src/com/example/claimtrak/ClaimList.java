@@ -23,16 +23,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class ClaimList {
-	
+	// list of claims and listeners
 	protected ArrayList<Claim> claimList = null;
 	protected transient ArrayList<Listener> listeners = null;
-	
+	//constructor
 	public ClaimList() {
 		claimList = new ArrayList<Claim>();
 		listeners = new ArrayList<Listener>();
 	}
 	
-	
+	// retrieve list of listeners
 	private ArrayList<Listener> getListeners() {
 		if (listeners == null) {
 			listeners = new ArrayList<Listener>();
@@ -40,23 +40,23 @@ public class ClaimList {
 		return listeners;
 	}
 	
-	
+	// get claimlist
 	public Collection<Claim> getClaims() {
 		return claimList;
 	}
-	
+	// add a new claim
 	public void addClaim(Claim testClaim) {
 		claimList.add(testClaim);
 		notifyListeners();
 	}
 	
-	
+	// notify listeners
 	private void notifyListeners() {
 		for (Listener listener: getListeners()) {
 			listener.update();
 		}
 	}
-	
+	// remove claim
 	public void removeClaim(Claim testClaim) {
 		claimList.remove(testClaim);
 		notifyListeners();
@@ -69,7 +69,7 @@ public class ClaimList {
 	public boolean contains(Claim testClaim) {
 		return claimList.contains(testClaim);
 	}
-	
+	// add/remove listeners
 	public void addListener(Listener l) {
 		getListeners().add(l);
 	}
