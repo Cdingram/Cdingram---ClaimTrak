@@ -38,7 +38,7 @@ public class EmailActivity extends Activity {
 	
 	public void send(View v) {
 		// from stackoverflow.com/questions/8284706/send-email-via-gmail
-		EditText email = (EditText) findViewById(R.id.button1);
+		EditText email = (EditText) findViewById(R.id.editText1);
 		Intent send = new Intent(Intent.ACTION_SENDTO);
 		String expenseString = ""+GlobalClaim.claim.getClaimName();
 		for (Expense item: GlobalClaim.claim.getExpenses()) {

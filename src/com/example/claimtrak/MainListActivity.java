@@ -45,7 +45,7 @@ public class MainListActivity extends ListActivity {
 		final ArrayList<Claim> list1 = new ArrayList<Claim>(claims);
 		final ArrayList<String> list2 = new ArrayList<String>();
 		for(Claim item: list1) {
-			list2.add(item.getClaimName());
+			list2.add("" + item.getClaimName() + " - (" + item.getStatus() + ")");
 		}
 		final ArrayAdapter<String> claimAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list2);
 		listView.setAdapter(claimAdapter);
@@ -58,7 +58,7 @@ public class MainListActivity extends ListActivity {
 				Collection<Claim> claims;	
 				claims = ClaimController.getClaimList().getClaims();
 				for(Claim item: claims) {
-					list2.add(item.getClaimName());
+					list2.add("" + item.getClaimName() + " - (" + item.getStatus() + ")");
 				}
 				claimAdapter.notifyDataSetChanged();
 			}
@@ -78,7 +78,7 @@ public class MainListActivity extends ListActivity {
 				Collection<Claim> claims = ClaimController.getClaimList().getClaims();
 				final ArrayList<Claim> list3 = new ArrayList<Claim>(claims);
 				for (Claim item: list3) {
-					if (item.getClaimName().equals(claimName)) {
+					if (("" + item.getClaimName() + " - (" + item.getStatus() + ")").equals(claimName)) {
 						viewClaim = item;
 					}
 				}
@@ -111,7 +111,7 @@ public class MainListActivity extends ListActivity {
 						Collection<Claim> claims = ClaimController.getClaimList().getClaims();
 						final ArrayList<Claim> list3 = new ArrayList<Claim>(claims);
 						for (Claim item: list3) {
-							if (item.getClaimName().equals(claimName)) {
+							if (("" + item.getClaimName() + " - (" + item.getStatus() + ")").equals(claimName)) {
 								deletedClaim = item;
 							}
 						}
@@ -129,7 +129,7 @@ public class MainListActivity extends ListActivity {
 						Collection<Claim> claims = ClaimController.getClaimList().getClaims();
 						final ArrayList<Claim> list3 = new ArrayList<Claim>(claims);
 						for (Claim item: list3) {
-							if (item.getClaimName().equals(claimName)) {
+							if (("" + item.getClaimName() + " - (" + item.getStatus() + ")").equals(claimName)) {
 								editClaim = item;
 							}
 						}

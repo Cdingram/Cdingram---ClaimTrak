@@ -96,5 +96,9 @@ public class Claim {
 		this.status = status;
 	}
 	
+	public String getStatus() {
+		return this.status;
+	}
+	
 
 }
