@@ -1,6 +1,7 @@
 # Cdingram-ClaimTrak
 301 Assignment 1
-Video demo at -http://youtu.be/2J5Jsg9E6JM (wasn't able to install email client sorry. It worked fine on my home emulator)
+Video demo at -http://youtu.be/2J5Jsg9E6JM (wasn't able to install email client sorry :( It worked fine on my home emulator)
+--Simply clone and import into Eclipse to run
 
 # Acknowledgements
 This app uses code from, and code heavily inspired by:
