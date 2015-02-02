@@ -37,6 +37,10 @@ import com.google.gson.reflect.TypeToken;
 import android.content.Context;
 
 // manager heavily inspired by Abram Hindles student-picker tutorials
+/*
+ * The manager is used to 'manage' the claimlist, its main function is to facilitate the loading
+ * and saving of data for persistance
+ */
 
 public class ClaimListManager {
 	// save filename

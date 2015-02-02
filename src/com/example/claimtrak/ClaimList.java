@@ -21,7 +21,11 @@ package com.example.claimtrak;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
+/*
+ * This class contains an array of all the claims so they can be added, removed, displayed, etc.
+ * It contains listeners so that data can be updated and displayed, as well as appropriate 
+ * manipulation methods
+ */
 public class ClaimList {
 	// list of claims and listeners
 	protected ArrayList<Claim> claimList = null;

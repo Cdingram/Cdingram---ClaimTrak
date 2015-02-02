@@ -23,7 +23,10 @@
 package com.example.claimtrak;
 
 import java.io.IOException;
-
+/*
+ * This class is a controller for claims. It has a claimslist which is managed by the manager and allows
+ * for manipulation of the claimList object including saving and adding to the list
+ */
 public class ClaimController {
 	
 	private static ClaimList claimList = null;

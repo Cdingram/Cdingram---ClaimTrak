@@ -20,7 +20,11 @@
 package com.example.claimtrak;
 
 import java.util.Date;
-
+/*
+ * An expense object is a piece of data containing information about a travel expense
+ * pertaining to a particular claim. It contains the appropriate data that is stored and manipulated
+ * in this class
+ */
 public class Expense {
 	// expense attributes 
 	protected Date date;

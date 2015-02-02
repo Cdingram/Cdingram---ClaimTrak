@@ -19,6 +19,8 @@
 */
 package com.example.claimtrak;
 
+// the currency class is simply to allow easy manipulation and storage of currency
+// for expense items. It stores totals and allows manipulation of these totals
 public class Currency {
 	// currency totals
 	private float CAD = 0;

@@ -23,7 +23,10 @@ package com.example.claimtrak;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-
+/*
+ * This class is for claim items, and it contains attributes for all required info, including an array
+ * of expense objects, and methods for manipulating/adding these attributes
+ */
 public class Claim {
 	// attributes
 	protected ArrayList<Expense> expenses = null;
