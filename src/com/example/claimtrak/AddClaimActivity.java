@@ -47,14 +47,12 @@ public class AddClaimActivity extends Activity {
 		EditText claimCat = (EditText) findViewById(R.id.claimCategoryEditText);
 		EditText claimTo = (EditText) findViewById(R.id.claimToEditText);
 		EditText claimFrom = (EditText) findViewById(R.id.claimFromEditText);
-		EditText claimStat = (EditText) findViewById(R.id.claimStatEditText);
 		ClaimController cc = new ClaimController();
 		// get all input
 		String cat = claimCat.getText().toString();
 		String to = claimTo.getText().toString();
 		String from = claimFrom.getText().toString();
-		String stat = claimStat.getText().toString();
-		if (cat.length() == 0 || to.length() == 0 || from.length() == 0 || stat.length() == 0) {
+		if (cat.length() == 0 || to.length() == 0 || from.length() == 0) {
 			Toast.makeText(this, "Ensure all fields are filled", Toast.LENGTH_SHORT).show();
 			return;
 		}
@@ -73,7 +71,7 @@ public class AddClaimActivity extends Activity {
 			return;
 		}
 		
-		cc.addClaim(new Claim(cat, toD, fromD, stat));
+		cc.addClaim(new Claim(cat, toD, fromD, "In Progress"));
 		ClaimController.saveClaimList();
 		GlobalClaim.claim = null;
 		

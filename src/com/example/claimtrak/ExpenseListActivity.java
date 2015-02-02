@@ -54,6 +54,31 @@ public class ExpenseListActivity extends Activity {
 		String text = "Totals" + "\n" + GlobalClaim.claim.getTotalCAD() + " CAD" +"\n" +  GlobalClaim.claim.getTotalUSD() + " USD" + "\n" + GlobalClaim.claim.getTotalEUR() + " EUR" + "\n" +  GlobalClaim.claim.getTotalGBP() + " GBP";
 		textView.setText(text);
 		
+		// set onclick for view
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				final int finalPosition = position;
+				String expenseName = list2.get(finalPosition);
+				Expense viewExpense = new Expense();
+				Collection<Expense> expenses = GlobalClaim.claim.getExpenses();
+				final ArrayList<Expense> list3 = new ArrayList<Expense>(expenses);
+				for (Expense item: list3) {
+					if (item.getCategory().equals(expenseName)) {
+						viewExpense = item;
+					}
+				}
+				
+				Intent intent = new Intent(ExpenseListActivity.this, ExpenseSummaryActivity.class);
+				GlobalClaim.expense = viewExpense;
+				startActivity(intent);
+				
+			}
+		});
+		
 		//set longclick for edit/delete
 		listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 

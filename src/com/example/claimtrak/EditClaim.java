@@ -81,7 +81,11 @@ public class EditClaim extends Activity {
 			claim.setToDate(fromD);
 		}
 		if (stat.length() != 0 ) {
-			claim.setCategory(stat);
+			if (stat.equals("Submitted") || stat.equals("Returned") || stat.equals("Approved")){
+				claim.setCategory(stat);
+			} else {
+				Toast.makeText(this, "Ensure status is Submitted or Returned or Approved", Toast.LENGTH_SHORT).show();
+			}
 		}
 		
 		ClaimController.saveClaimList();

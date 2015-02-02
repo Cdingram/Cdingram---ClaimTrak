@@ -68,6 +68,6 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editClaimToEditText"
         android:ems="10"
-        android:hint="Submitted/Returned" />
+        android:hint="Submitted/Returned/Approved" />
     
 </RelativeLayout>

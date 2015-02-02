@@ -60,14 +60,4 @@
         android:hint="To Date DD/MM/YYYY"
         android:inputType="date" />
 
-    <EditText
-        android:id="@+id/claimStatEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/claimToEditText"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/claimToEditText"
-        android:ems="10"
-        android:hint="Submitted/Returned" />
-
 </RelativeLayout>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class ExpenseSummaryActivity extends Activity {
 
@@ -30,5 +31,23 @@ public class ExpenseSummaryActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		Expense expense = GlobalClaim.expense;
+		
+		TextView catText = (TextView) findViewById(R.id.categorySummaryTextView);
+		TextView dateText = (TextView) findViewById(R.id.dateSummaryTextView);
+		TextView desText = (TextView) findViewById(R.id.desSummaryTextView);
+		TextView amountText = (TextView) findViewById(R.id.amountSummaryTextView);
+		
+		catText.setText(expense.getCategory());
+		dateText.setText(expense.getDate().toString());
+		desText.setText(expense.getDescription());
+		amountText.setText("Total" + "\n" + expense.currency.getCAD() + " CAD" +"\n" +  expense.currency.getUSD() + " USD" + "\n" + expense.currency.getEUR() + " EUR" + "\n" +  expense.currency.getGBP() + " GBP");
+		
+		GlobalClaim.expense = null;
 	}
 }

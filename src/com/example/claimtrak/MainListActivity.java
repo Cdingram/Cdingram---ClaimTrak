@@ -134,9 +134,13 @@ public class MainListActivity extends ListActivity {
 							}
 						}
 						
-						Intent intent = new Intent(MainListActivity.this, EditClaim.class);
-						GlobalClaim.claim = editClaim;
-				    	startActivity(intent);
+						if (editClaim.getStatus().equals("Submitted") || editClaim.getStatus().equals("Approved")) {
+							
+						} else {
+							Intent intent = new Intent(MainListActivity.this, EditClaim.class);
+							GlobalClaim.claim = editClaim;
+					    	startActivity(intent);
+						}
 						
 					}
 				});
